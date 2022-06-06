@@ -1,5 +1,5 @@
 <template>
-  <div class="box has-text-weight-bold" :style="estilos">
+  <div class="box has-text-weight-bold" :style="styles">
     <slot></slot>
   </div>
 </template>
@@ -12,7 +12,7 @@ export default defineComponent({
   
   data () {
     return {
-      estilos: {
+      styles: {
         backgroundColor: '#FAF0CA'
       }
     }

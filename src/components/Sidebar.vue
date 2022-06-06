@@ -1,10 +1,10 @@
 <template>
   <header>
     <h1>
-      <img src="../assets/logo.png" alt="">  
+      <img src="@/assets/logo.png">  
     </h1>
-    <button class="button" @click="alterarTema">
-      {{ textoBotao }}
+    <button class="button" @click="changeTheme">
+      {{ textButton }}
     </button>
   </header>
 </template>
@@ -13,19 +13,19 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'BarraLateral',
+  name: 'Sidebar',
   
-  emits: ['aoTemaAlterado'],
+  emits: ['themeChange'],
   
   data () {
     return {
-      modoEscuroAtivo: false
+      themeDarkActive: false
     }
   },
   
   computed: {
-    textoBotao () {
-      if (this.modoEscuroAtivo) {
+    textButton () {
+      if (this.themeDarkActive) {
         return 'Desativar modo escuro'
       }
       return 'Ativar modo escuro'
@@ -33,9 +33,9 @@ export default defineComponent({
   },
   
   methods: {
-    alterarTema () {
-      this.modoEscuroAtivo = !this.modoEscuroAtivo
-      this.$emit('aoTemaAlterado', this.modoEscuroAtivo)
+    changeTheme () {
+      this.themeDarkActive = !this.themeDarkActive
+      this.$emit('themeChange', this.themeDarkActive)
     }
   }
 })

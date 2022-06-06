@@ -1,7 +1,7 @@
 <template>
   <section>
     <strong class="display">
-      {{ tempoDecorrido }}
+      {{ elapsedTime }}
     </strong>
   </section>
 </template>
@@ -10,18 +10,18 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Cronometro',
+  name: 'Stopwatch',
   
   props: {
-    tempoEmSegundos: {
+    timeInSeconds: {
       type: Number,
       default: 0
     }
   },
   
   computed: {
-    tempoDecorrido () : string {
-      return new Date(this.tempoEmSegundos * 1000).toISOString().substr(11,8)
+    elapsedTime () : string {
+      return new Date(this.timeInSeconds * 1000).toISOString().substr(11, 8)
     }
   },
 })
@@ -29,6 +29,6 @@ export default defineComponent({
 
 <style scoped>
 .display {
-  color: var(--texto-primario);
+  color: var(--text-primary);
 }
 </style>
