@@ -11,7 +11,7 @@
 <p align="center">Marcos Vinicios da Silva Neves - Alura</p>
 
 <p align="center">
-  <a href="#como-executar-o-projeto">Como executar o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#como-executar-o-projeto">Como executar o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#conteúdo-do-curso">Conteúdo do curso</a>
 </p>
 
