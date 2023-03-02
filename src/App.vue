@@ -1,76 +1,59 @@
 <template>
-  <main class="columns is-gapless is-multiline" :class="{ 'theme-dark': themeDarkActive }">
+  <main
+    class="columns is-gapless is-multiline"
+    :class="{ 'theme-dark': themeDarkActive }"
+  >
     <div class="column is-one-quarter">
-      <Sidebar @themeChange="changeTheme"/>
+      <Sidebar @themeChange="changeTheme" />
     </div>
     <div class="column is-three-quarter content">
-      <FormTask @saveTask="saveTask"/>
-      <div class="list">
-        <Task v-for="(task, index) in tasks" :key="index" :task="task"/>
-        <Box v-if="emptyTaskList">
-          Você não está muito produtivo hoje :(
-        </Box>
-      </div>
+      <Notifications />
+      <router-view />
     </div>
   </main>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Sidebar from './components/Sidebar.vue'
-import FormTask from './components/FormTask.vue'
-import Task from './components/Task.vue'
-import Box from './components/Box.vue'
-import ITask from './interfaces/ITask'
+import { defineComponent } from 'vue'
+import Sidebar from '@/components/common/Sidebar.vue'
+import Notifications from '@/components/notification/Notifications.vue'
 
 export default defineComponent({
   name: 'App',
-  
+
   components: {
     Sidebar,
-    FormTask,
-    Task,
-    Box
+    Notifications,
   },
 
-  data () {
+  data() {
     return {
-      tasks: [] as ITask[],
-      themeDarkActive: false
-    }
-  },
-
-  computed: {
-    emptyTaskList () : boolean {
-      return this.tasks.length === 0
+      themeDarkActive: false,
     }
   },
 
   methods: {
-    changeTheme (themeDarkActive: boolean) {
+    changeTheme(themeDarkActive: boolean) {
       this.themeDarkActive = themeDarkActive
     },
-
-    saveTask (task: ITask) {
-      this.tasks.push(task)
-    }    
-  }
-});
+  },
+})
 </script>
 
 <style>
 main {
-  --bg-primary: #fff;
-  --text-primary: #000;
+  --bg-primary: #fff !important;
+  --text-primary: #000 !important;
 }
 
 main.theme-dark {
-  --bg-primary: #2b2d42;
-  --text-primary: #ddd;
+  --bg-primary: #2b2d42 !important;
+  --text-primary: #ddd !important;
 }
 
 .content {
   background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .list {

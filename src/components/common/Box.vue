@@ -1,6 +1,6 @@
 <template>
   <div class="box has-text-weight-bold" :style="styles">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
@@ -9,13 +9,13 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Box',
-  
-  data () {
+
+  data() {
     return {
       styles: {
-        backgroundColor: '#FAF0CA'
-      }
+        backgroundColor: '#FAF0CA',
+      },
     }
-  }
+  },
 })
 </script>

@@ -17,41 +17,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 import Stopwatch from './Stopwatch.vue'
 
 export default defineComponent({
-  name: "Timer",
-  
+  name: 'Timer',
+
   emits: ['finishedTimer'],
-  
+
   components: {
-    Stopwatch
+    Stopwatch,
   },
-  
-  data () {
+
+  data() {
     return {
       timeInSeconds: 0,
       stopwatch: 0,
-      stopwatchRunning: false
+      stopwatchRunning: false,
     }
   },
-  
+
   methods: {
-    start () {
+    start() {
       // 1 seg = 1000 ms
       this.stopwatchRunning = true
       this.stopwatch = setInterval(() => {
-        this.timeInSeconds += 1        
+        this.timeInSeconds += 1
       }, 1000)
     },
-    
-    stop () {
+
+    stop() {
       this.stopwatchRunning = false
       clearInterval(this.stopwatch)
       this.$emit('finishedTimer', this.timeInSeconds)
       this.timeInSeconds = 0
-    }
-  }
-});
+    },
+  },
+})
 </script>
