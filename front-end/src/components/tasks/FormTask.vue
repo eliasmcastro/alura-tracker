@@ -50,7 +50,7 @@ export default defineComponent({
     const { notify } = useNotifier()
 
     return {
-      projects: computed(() => store.state.projects),
+      projects: computed(() => store.state.project.projects),
       notify,
     }
   },
@@ -73,7 +73,7 @@ export default defineComponent({
       this.$emit('saveTask', {
         durationInSeconds: elapsedTime,
         description: this.description,
-        project: this.projects.find((project) => project.id == this.idProject),
+        project: this.projects.find((project) => project.id === Number(this.idProject)),
       })
 
       this.notify(

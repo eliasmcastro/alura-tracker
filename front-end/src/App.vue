@@ -33,7 +33,7 @@ export default defineComponent({
   },
 
   methods: {
-    changeTheme(themeDarkActive: boolean) {
+    changeTheme(themeDarkActive: boolean): void {
       this.themeDarkActive = themeDarkActive
     },
   },

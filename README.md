@@ -33,9 +33,22 @@
 git clone https://github.com/eliasmcastro/alura-tracker.git
 ```
 
-### Executar
+### Back-end
 
-- `cd alura-tracker` para entrar na pasta
+Vamos utilizar uma fake API para prover os dados, para isso entre na pasta back-end e execute
+
+- `npm install` para instalar as dependências do projeto
+- `npm run serve` para iniciar a API fake
+
+As rotas disponíveis são:
+
+- http://localhost:3333/projects
+- http://localhost:3333/tasks
+
+### Front-end
+
+Para executar o front-end, entre na pasta front-end e execute
+
 - `npm install` para instalar as dependências do projeto
 - `npm run serve` para iniciar o servidor de desenvolvimento
 - Acessar http://localhost:8080

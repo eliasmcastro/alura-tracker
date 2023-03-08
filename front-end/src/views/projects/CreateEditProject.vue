@@ -21,7 +21,7 @@
 <script lang="ts">
 import { useStore } from '@/store'
 import { defineComponent } from 'vue'
-import { ADD_PROJECT, ALTER_PROJECT } from '@/store/type-mutations'
+import { CREATE_PROJECT, UPDATE_PROJECT } from '@/store/type-actions'
 import { TypeNotification } from '@/interfaces/INotification'
 import useNotifier from '@/hooks/notifier'
 
@@ -53,7 +53,7 @@ export default defineComponent({
   methods: {
     save() {
       if (this.id) {
-        this.store.commit(ALTER_PROJECT, {
+        this.store.dispatch(UPDATE_PROJECT, {
           id: this.id,
           name: this.nameProject,
         })
@@ -63,7 +63,7 @@ export default defineComponent({
           'O projeto foi atualizado com sucesso!',
         )
       } else {
-        this.store.commit(ADD_PROJECT, this.nameProject)
+        this.store.dispatch(CREATE_PROJECT, this.nameProject)
         this.notify(
           TypeNotification.SUCESSO,
           'Sucesso!',
@@ -78,11 +78,17 @@ export default defineComponent({
 
   mounted() {
     if (this.id) {
-      const project = this.store.state.projects.find(
-        (project) => project.id == this.id,
+      const project = this.store.state.project.projects.find(
+        (project) => project.id === Number(this.id),
       )
       this.nameProject = project?.name || ''
     }
   },
 })
 </script>
+
+<style scoped>
+.label {
+  color: var(--text-primary);
+}
+</style>

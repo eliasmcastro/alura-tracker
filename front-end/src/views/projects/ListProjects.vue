@@ -8,7 +8,7 @@
         <span>Novo projeto</span>
       </router-link>
     </div>
-    <table v-if="projects.length > 0" class="table is-fullwidth mt-3">
+    <table v-if="!emptyProjectList" class="table is-fullwidth mt-3">
       <thead>
         <tr>
           <th>ID</th>
@@ -48,7 +48,7 @@
 <script lang="ts">
 import { useStore } from '@/store'
 import { computed, defineComponent } from 'vue'
-import { DELETE_PROJECT } from '@/store/type-mutations'
+import { GET_PROJECTS, DELETE_PROJECT } from '@/store/type-actions'
 import { TypeNotification } from '@/interfaces/INotification'
 import useNotifier from '@/hooks/notifier'
 
@@ -59,16 +59,24 @@ export default defineComponent({
     const store = useStore()
     const { notify } = useNotifier()
 
+    store.dispatch(GET_PROJECTS)
+
     return {
-      projects: computed(() => store.state.projects),
+      projects: computed(() => store.state.project.projects),
       store,
       notify,
     }
   },
 
+  computed: {
+    emptyProjectList(): boolean {
+      return this.projects && this.projects.length === 0
+    },
+  },
+
   methods: {
     deleteProject(id: string) {
-      this.store.commit(DELETE_PROJECT, id)
+      this.store.dispatch(DELETE_PROJECT, id)
 
       this.notify(
         TypeNotification.SUCESSO,
